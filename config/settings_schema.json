@@ -1466,5 +1466,18 @@
         "label": "t:settings_schema.customer_accounts.settings.customer_account_menu.label"
       }
     ]
-  }
+  },
+  {
+    "name": "Free Shipping Settings",
+  "settings": [
+    {
+      "type": "number",
+      "id": "free_shipping_threshold",
+      "label": "Free Shipping Threshold (₹)",
+      "default": 2000,
+      "min": 1
+    }
+  ]
+}
+
 ]

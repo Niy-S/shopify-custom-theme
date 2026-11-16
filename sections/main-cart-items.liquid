@@ -51,9 +51,11 @@
       {%- endif -%}
     </div>
 
+    
     <form action="{{ routes.cart_url }}" class="cart__contents critical-hidden" method="post" id="cart">
       <div class="cart__items" id="main-cart-items" data-id="{{ section.id }}">
         <div class="js-contents">
+          {%- render 'free-shipping-bar' -%}
           {%- if cart != empty -%}
             <table class="cart-items">
               <caption class="visually-hidden">
