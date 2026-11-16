@@ -1,5 +1,20 @@
 <!-- Testing Shopify theme file sync -->
 {% style %}
+
+.promo-banner-{{ section.id }}::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    90deg,
+    rgba(238, 241, 244, 0.96) 0%,
+    rgba(238, 241, 244, 0.85) 35%,
+    rgba(238, 241, 244, 0.15) 70%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
   
 .promo-banner-{{ section.id }} {
   position: relative;
@@ -16,16 +31,21 @@
 .promo-banner-{{ section.id }} .promo-content {
   position: relative;
   z-index: 2;
-  width: 48%;
+  width: 45%;
+  max-width: 520px;
+  padding: 20px 0;
 }
 
 .promo-banner-{{ section.id }} h2 {
-  font-size: clamp(28px, 4vw, 44px);
-  margin: 0 0 15px;
+  font-size: clamp(30px, 4vw, 46px);
+  line-height: 1.15;
+  margin: 0 0 16px;
   color: inherit;
 }
 
 .promo-banner-{{ section.id }} .promo-description {
+  font-size: 16px;
+  line-height: 1.6;
   margin-bottom: 24px;
 }
 
@@ -75,13 +95,33 @@
 
 @media screen and (max-width: 749px) {
   .promo-banner-{{ section.id }} {
-    min-height: 400px;
-    padding: 30px 20px;
-  }
+  min-height: 420px;
+  padding: 30px 20px;
+}
 
-  .promo-banner-{{ section.id }} .promo-content {
-    width: 75%;
-  }
+.promo-banner-{{ section.id }}::before {
+  background: linear-gradient(
+    90deg,
+    rgba(238, 241, 244, 0.97) 0%,
+    rgba(238, 241, 244, 0.90) 60%,
+    rgba(238, 241, 244, 0.45) 100%
+  );
+}
+
+.promo-banner-{{ section.id }} .promo-content {
+  width: 85%;
+  max-width: 100%;
+  padding: 15px 0;
+}
+
+.promo-banner-{{ section.id }} h2 {
+  font-size: 30px;
+  line-height: 1.2;
+}
+
+.promo-banner-{{ section.id }} .promo-description {
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 {% endstyle %}
