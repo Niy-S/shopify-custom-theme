@@ -1,0 +1,185 @@
+<!-- Testing Shopify theme file sync -->
+{% style %}
+  
+.promo-banner-{{ section.id }} {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 450px;
+  padding: 50px 6%;
+  background: {{ section.settings.background_color }};
+  color: {{ section.settings.text_color }};
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.promo-banner-{{ section.id }} .promo-content {
+  position: relative;
+  z-index: 2;
+  width: 48%;
+}
+
+.promo-banner-{{ section.id }} h2 {
+  font-size: clamp(28px, 4vw, 44px);
+  margin: 0 0 15px;
+  color: inherit;
+}
+
+.promo-banner-{{ section.id }} .promo-description {
+  margin-bottom: 24px;
+}
+
+.promo-banner-{{ section.id }} .promo-button {
+  display: inline-block;
+  padding: 13px 25px;
+  background: {{ section.settings.button_color }};
+  color: {{ section.settings.button_text_color }};
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.promo-banner-{{ section.id }} .promo-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.promo-banner-{{ section.id }} .promo-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.promo-banner-{{ section.id }} .promo-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.promo-banner-{{ section.id }} .promo-image img {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: cover !important;
+  object-position: center !important;
+}
+
+@media screen and (max-width: 749px) {
+  .promo-banner-{{ section.id }} {
+    min-height: 400px;
+    padding: 30px 20px;
+  }
+
+  .promo-banner-{{ section.id }} .promo-content {
+    width: 75%;
+  }
+}
+
+{% endstyle %}
+
+<section class="promo-banner-{{ section.id }}">
+  <div class="promo-content">
+    {% if section.settings.heading != blank %}
+      <h2>{{ section.settings.heading | escape }}</h2>
+    {% endif %}
+
+    {% if section.settings.description != blank %}
+      <div class="promo-description">
+        {{ section.settings.description }}
+      </div>
+    {% endif %}
+
+    {% if section.settings.button_label != blank %}
+      <a
+        class="promo-button"
+        href="{{ section.settings.button_link | default: routes.all_products_collection_url }}"
+      >
+        {{ section.settings.button_label | escape }}
+      </a>
+    {% endif %}
+  </div>
+
+  {% if section.settings.image != blank %}
+    <div class="promo-image">
+      {{
+        section.settings.image
+        | image_url: width: 1200
+        | image_tag: loading: 'lazy', alt: section.settings.image.alt
+      }}
+    </div>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Custom Promo Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Banner heading",
+      "default": "Discover Something New"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Explore our latest collection and find something you love.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Banner image"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#EEF1F4"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#1C2B3A"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button background",
+      "default": "#2D6A6A"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Promo Banner"
+    }
+  ]
+}
+{% endschema %}
